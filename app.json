@@ -1,0 +1,6 @@
+{
+  "name": "Game 1",
+  "description": "First Game to participate in Winter Games",
+  "repository": "https://github.com/jabrena/winter-games-game1",
+  "image": "heroku/java"
+}
