@@ -18,7 +18,7 @@ apply plugin: 'org.springframework.boot'
 
 jar {
 	baseName = 'game1'
-	version = '0.1.2'
+	version = '0.1.3'
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -50,3 +50,6 @@ dependencyManagement {
 		mavenBom "org.springframework.boot.experimental:spring-boot-dependencies-web-reactive:0.1.0.BUILD-SNAPSHOT"
 	}
 }
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
