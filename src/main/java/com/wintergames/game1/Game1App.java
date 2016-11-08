@@ -22,9 +22,10 @@ public class Game1App {
 	public static void start() throws InterruptedException {
 		RouterFunction<?> routes = Game1Routes.method1();
 
+		final int PORT = System.getenv("PORT") != null ? Integer.parseInt(System.getenv("PORT")) : 8080;
 		HttpHandler handler = RouterFunctions.toHttpHandler(routes);
 		ReactorHttpHandlerAdapter adapter = new ReactorHttpHandlerAdapter(handler);
-		HttpServer server = HttpServer.create("localhost",8080);
+		HttpServer server = HttpServer.create(PORT);
 		server.startAndAwait(adapter);
 	}
 
