@@ -40,6 +40,7 @@ dependencies {
 	compile("io.netty:netty-buffer")
 	compile("io.projectreactor.ipc:reactor-netty")
 	compileOnly('org.projectlombok:lombok')
+    compile('org.jolokia:jolokia-core')
 }
 
 dependencyManagement {

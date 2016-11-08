@@ -16,7 +16,7 @@ import static org.springframework.web.reactive.function.RouterFunctions.route;
 @Component
 public class Game1Routes {
 
-    private static final Logger log = LoggerFactory.getLogger(Game1Routes.class);
+    private static final Logger logger = LoggerFactory.getLogger(Game1Routes.class);
 
     private static final String STACKOVERFLOW_JAVA_QUESTIONS_ADDRESS = "http://api.stackexchange.com/2.2/questions?order=desc&sort=activity&tagged=java&site=stackoverflow";
 
@@ -26,7 +26,7 @@ public class Game1Routes {
         final HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory();
         final RestTemplate restTemplate = new RestTemplate(new BufferingClientHttpRequestFactory(clientHttpRequestFactory));
         final String result = restTemplate.getForObject(STACKOVERFLOW_JAVA_QUESTIONS_ADDRESS, String.class);
-        log.info(result);
+        logger.info(result);
 
         return result;
     }
