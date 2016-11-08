@@ -24,7 +24,7 @@ public class Game1App {
 
 		HttpHandler handler = RouterFunctions.toHttpHandler(routes);
 		ReactorHttpHandlerAdapter adapter = new ReactorHttpHandlerAdapter(handler);
-		HttpServer server = HttpServer.create(8080);
+		HttpServer server = HttpServer.create("localhost",8080);
 		server.startAndAwait(adapter);
 	}
 
