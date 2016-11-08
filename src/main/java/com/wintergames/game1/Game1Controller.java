@@ -1,5 +1,6 @@
 package com.wintergames.game1;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -21,9 +22,10 @@ public class Game1Controller {
 
     private static final Logger log = LoggerFactory.getLogger(Game1Controller.class);
 
+    private static final String STACKOVERFLOW_JAVA_QUESTIONS_ADDRESS = "http://api.stackexchange.com/2.2/questions?order=desc&sort=activity&tagged=java&site=stackoverflow";
+
     @GetMapping("/method1")
     public String method1() {
-        final String address = "http://api.stackexchange.com/2.2/questions?order=desc&sort=activity&tagged=java&site=stackoverflow";
 
         final HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory();
         final RestTemplate restTemplate = new RestTemplate(new BufferingClientHttpRequestFactory(clientHttpRequestFactory));
@@ -31,9 +33,10 @@ public class Game1Controller {
         interceptors.add(new RESTInterceptor());
         restTemplate.setInterceptors(interceptors);
 
-        final String result = restTemplate.getForObject(address, String.class);
+        final String result = restTemplate.getForObject(STACKOVERFLOW_JAVA_QUESTIONS_ADDRESS, String.class);
         log.info(result);
         return result;
     }
+
 
 }
