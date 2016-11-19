@@ -1,0 +1,7 @@
+language: java
+jdk:
+  - oraclejdk8
+sudo: required
+install: true
+after_success:
+- gradle pitest
