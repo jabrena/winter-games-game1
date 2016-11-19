@@ -1,5 +1,5 @@
 task wrapper(type: Wrapper) {
-	gradleVersion = '2.13'
+	gradleVersion = '3.2'
 }
 
 buildscript {
@@ -19,7 +19,6 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'jacoco'
 
 jar {
 	baseName = 'game1'
@@ -41,7 +40,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-validation')
 	compile('org.springframework.boot:spring-boot-starter-web-services')
 	compile('org.apache.httpcomponents:httpclient:4.5.1')
-	compileOnly('org.projectlombok:lombok')
+	compile('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
@@ -57,9 +56,21 @@ task stage {
 
 
 //Coverage
-jacocoTestReport {
-	reports {
-		xml.enabled = true // coveralls plugin depends on xml format report
-		html.enabled = true
+buildscript {
+	repositories {
+		mavenCentral()
 	}
+	dependencies {
+		classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.10'
+	}
+}
+
+apply plugin: "info.solidsoft.pitest"
+
+pitest {
+	targetClasses = ['com.wintergames.game1.*']
+	enableDefaultIncrementalAnalysis = true
+	jvmArgs = ['-Xmx2048m']
+	threads = 100
+	outputFormats = ['HTML']
 }
