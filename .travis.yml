@@ -4,4 +4,4 @@ jdk:
 sudo: required
 install: true
 after_success:
-- gradle jacocoTestReport
+- gradle pitest
