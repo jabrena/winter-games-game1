@@ -1,4 +1,4 @@
-package com.wintergames.game1;
+package com.wintergames.game1.tools;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
