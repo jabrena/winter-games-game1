@@ -1,3 +1,7 @@
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.13'
+}
+
 buildscript {
 	ext {
 		springBootVersion = '2.0.0.BUILD-SNAPSHOT'
@@ -15,11 +19,13 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'jacoco'
 
 jar {
 	baseName = 'game1'
 	version = '0.1.7'
 }
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -47,4 +53,13 @@ dependencyManagement {
 
 task stage {
     dependsOn build
+}
+
+
+//Coverage
+jacocoTestReport {
+	reports {
+		xml.enabled = true // coveralls plugin depends on xml format report
+		html.enabled = true
+	}
 }
