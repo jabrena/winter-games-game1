@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(
-        value="/v1/resource/",
+        value="/v1/resource",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
 public class Game1Controller {
