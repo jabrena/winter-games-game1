@@ -1,18 +1,15 @@
 package com.wintergames.game1.controller;
 
+import com.wintergames.game1.model.Answers;
 import com.wintergames.game1.service.Game1Service;
-import com.wintergames.game1.stackoverflow.model.Answers;
+import com.wintergames.game1.service.Game1ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(
         value="/v1/resource",
-        method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
 public class Game1Controller {
 
@@ -23,10 +20,24 @@ public class Game1Controller {
         this.game1Service = game1Service;
     }
 
-    @GetMapping("/method1")
+    @GetMapping("/sequence/")
     public Answers method1() {
-        return game1Service.getQuestions();
+        return game1Service.getQuestionsInSequence();
     }
 
+    @GetMapping("/parallel/futures")
+    public Answers methodParallelFuture() throws Game1ServiceException {
+        return game1Service.getQuestionsFutures();
+    }
+
+    @GetMapping("/parallel/futures/timeout")
+    public Answers methodParallelFutureTimeout() throws Game1ServiceException {
+        return game1Service.getQuestionsFuturesTimeout();
+    }
+
+    @PostMapping("/runtime/err")
+    public Answers methodParallelFutureCrash() throws Game1ServiceException {
+        throw new Game1ServiceException("CASTAÑAZO");
+    }
 
 }
