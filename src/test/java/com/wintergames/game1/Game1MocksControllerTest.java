@@ -19,7 +19,7 @@ import static org.mockito.BDDMockito.given;
 
 public class Game1MocksControllerTest extends Game1BaseControllerTest {
 
-    final static String METHOD1 = "/v1/resource/method1/";
+    final static String METHOD1 = "/v1/resource1/sequence";
 
     @Autowired
     private TestRestTemplate restTemplate;
