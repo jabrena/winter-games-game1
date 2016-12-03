@@ -25,7 +25,7 @@ public class Game1Controller {
         this.game1Service = game1Service;
     }
 
-    @GetMapping("/sequence/")
+    @GetMapping("/sequence")
     public Answers method1() {
         return game1Service.getQuestionsInSequence();
     }

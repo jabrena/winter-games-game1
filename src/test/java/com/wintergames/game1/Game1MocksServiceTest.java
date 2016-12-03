@@ -15,6 +15,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.BDDMockito.given;
 
+/*
 public class Game1MocksServiceTest extends Game1BaseServiceTest {
 
     @MockBean
@@ -37,3 +38,4 @@ public class Game1MocksServiceTest extends Game1BaseServiceTest {
         assertThat(game1Service.getQuestionsInSequence().getItems().size(), is(1));
     }
 }
+*/
