@@ -1,5 +1,5 @@
-# winter-games-game1
-The first game of Winter Games.
+# winter-games-game2
+The second game of Winter Games.
 
 http://start.spring.io/
 https://github.com/functionaljava/functionaljava

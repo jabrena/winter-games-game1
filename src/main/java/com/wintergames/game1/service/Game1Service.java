@@ -1,9 +1,14 @@
 package com.wintergames.game1.service;
 
 
-import com.wintergames.game1.stackoverflow.model.Answers;
+import com.wintergames.game1.model.Answers;
 
 public interface Game1Service {
 
-    Answers getQuestions();
+    Answers getQuestionsInSequence();
+    Answers getQuestionsFutures() throws Game1ServiceException;
+    Answers getQuestionsFuturesTimeout() throws Game1ServiceException;
+    Answers getQuestionsCompletableFutures() throws Game1ServiceException;
+    Answers getQuestionsCompletableFuturesTimeout() throws Game1ServiceException;
+
 }

@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar build/libs/game1-0.1.81.jar
+web: java -Dserver.port=$PORT -jar build/libs/game1-0.2.1.jar

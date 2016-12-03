@@ -1,9 +1,9 @@
 package com.wintergames.game1;
 
 import com.wintergames.game1.base.Game1BaseServiceTest;
+import com.wintergames.game1.model.Answers;
+import com.wintergames.game1.model.stackoverflow.Item;
 import com.wintergames.game1.service.Game1Service;
-import com.wintergames.game1.stackoverflow.model.Answers;
-import com.wintergames.game1.stackoverflow.model.Item;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -26,15 +26,14 @@ public class Game1MocksServiceTest extends Game1BaseServiceTest {
         Item item = new Item();
         item.setIsAnswered(false);
         items.add(item);
-        final Answers answers = new Answers();
-        answers.setItems(items);
+        final Answers answers = new Answers(items);
 
-        given(this.game1Service.getQuestions())
+        given(this.game1Service.getQuestionsInSequence())
                 .willReturn(answers);
     }
 
     @Test
-    public void test() {
-        assertThat(game1Service.getQuestions().getItems().size(), is(1));
+    public void getAnswersSucessMockTest() {
+        assertThat(game1Service.getQuestionsInSequence().getItems().size(), is(1));
     }
 }
