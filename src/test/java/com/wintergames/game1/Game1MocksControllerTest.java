@@ -1,9 +1,9 @@
 package com.wintergames.game1;
 
 import com.wintergames.game1.base.Game1BaseControllerTest;
+import com.wintergames.game1.model.Answers;
+import com.wintergames.game1.model.stackoverflow.Item;
 import com.wintergames.game1.service.Game1Service;
-import com.wintergames.game1.stackoverflow.model.Answers;
-import com.wintergames.game1.stackoverflow.model.Item;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,15 +33,14 @@ public class Game1MocksControllerTest extends Game1BaseControllerTest {
         Item item = new Item();
         item.setIsAnswered(false);
         items.add(item);
-        final Answers answers = new Answers();
-        answers.setItems(items);
+        final Answers answers = new Answers(items);
 
-        given(this.game1Service.getQuestions())
+        given(this.game1Service.getQuestionsInSequence())
                 .willReturn(answers);
     }
 
     @Test
-    public void test() {
+    public void getAnswersSucessMockTest() {
         Answers answer = this.restTemplate.getForObject(METHOD1, Answers.class);
         assertThat(answer.getItems().size(), is(1));
     }

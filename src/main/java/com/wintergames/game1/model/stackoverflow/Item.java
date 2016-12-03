@@ -1,4 +1,4 @@
-package com.wintergames.game1.stackoverflow.model;
+package com.wintergames.game1.model.stackoverflow;
 
 
 import com.fasterxml.jackson.annotation.*;

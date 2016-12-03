@@ -1,4 +1,4 @@
-package com.wintergames.game1.stackoverflow.model;
+package com.wintergames.game1.model.stackoverflow;
 
 import com.fasterxml.jackson.annotation.*;
 
@@ -18,7 +18,7 @@ import java.util.Map;
         "quota_max",
         "quota_remaining"
 })
-public class Answers {
+public class StackOverflowAnswers {
 
     @JsonProperty("items")
     @Valid
@@ -36,7 +36,7 @@ public class Answers {
      * No args constructor for use in serialization
      *
      */
-    public Answers() {
+    public StackOverflowAnswers() {
     }
 
     /**
@@ -46,7 +46,7 @@ public class Answers {
      * @param items
      * @param quotaRemaining
      */
-    public Answers(List<Item> items, boolean hasMore, long quotaMax, long quotaRemaining) {
+    public StackOverflowAnswers(List<Item> items, boolean hasMore, long quotaMax, long quotaRemaining) {
         this.items = items;
         this.hasMore = hasMore;
         this.quotaMax = quotaMax;
@@ -73,7 +73,7 @@ public class Answers {
         this.items = items;
     }
 
-    public Answers withItems(List<Item> items) {
+    public StackOverflowAnswers withItems(List<Item> items) {
         this.items = items;
         return this;
     }
@@ -98,7 +98,7 @@ public class Answers {
         this.hasMore = hasMore;
     }
 
-    public Answers withHasMore(boolean hasMore) {
+    public StackOverflowAnswers withHasMore(boolean hasMore) {
         this.hasMore = hasMore;
         return this;
     }
@@ -123,7 +123,7 @@ public class Answers {
         this.quotaMax = quotaMax;
     }
 
-    public Answers withQuotaMax(long quotaMax) {
+    public StackOverflowAnswers withQuotaMax(long quotaMax) {
         this.quotaMax = quotaMax;
         return this;
     }
@@ -148,7 +148,7 @@ public class Answers {
         this.quotaRemaining = quotaRemaining;
     }
 
-    public Answers withQuotaRemaining(long quotaRemaining) {
+    public StackOverflowAnswers withQuotaRemaining(long quotaRemaining) {
         this.quotaRemaining = quotaRemaining;
         return this;
     }
@@ -163,7 +163,7 @@ public class Answers {
         this.additionalProperties.put(name, value);
     }
 
-    public Answers withAdditionalProperty(String name, Object value) {
+    public StackOverflowAnswers withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
     }
