@@ -2,11 +2,6 @@ task wrapper(type: Wrapper) {
 	gradleVersion = '3.2'
 }
 
-jar {
-	baseName = 'game2'
-	version = '0.2.2'
-}
-
 buildscript {
 	ext {
 		//springBootVersion = '2.0.0.BUILD-SNAPSHOT'
@@ -28,6 +23,11 @@ apply plugin: 'org.springframework.boot'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+jar {
+	baseName = 'game2'
+	version = '0.2.3'
+}
 
 repositories {
 	mavenCentral()
