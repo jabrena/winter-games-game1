@@ -8,5 +8,7 @@ public interface Game1Service {
     Answers getQuestionsInSequence();
     Answers getQuestionsFutures() throws Game1ServiceException;
     Answers getQuestionsFuturesTimeout() throws Game1ServiceException;
+    Answers getQuestionsCompletableFutures() throws Game1ServiceException;
+    Answers getQuestionsCompletableFuturesTimeout() throws Game1ServiceException;
 
 }

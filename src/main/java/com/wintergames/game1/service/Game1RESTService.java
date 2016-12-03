@@ -12,10 +12,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
+import java.util.function.BinaryOperator;
+import java.util.function.Supplier;
 
 @Service
 public class Game1RESTService implements Game1Service {
@@ -113,6 +112,60 @@ public class Game1RESTService implements Game1Service {
         } catch (InterruptedException e) {
             throw new Game1ServiceException(e);
         } catch (ExecutionException e) {
+            throw new Game1ServiceException(e);
+        }
+    }
+
+    //CompletableFuture
+
+    @Override
+    public Answers getQuestionsCompletableFutures() throws Game1ServiceException {
+
+        final CompletableFuture cfuture1 = CompletableFuture.supplyAsync( ( ) -> {
+            return this.getJavaAnswers();
+        });
+        final CompletableFuture cfuture2 = CompletableFuture.supplyAsync( ( ) -> {
+            return this.getJavaScriptAnswers();
+        });
+        final CompletableFuture welcomeOrNot = cfuture1.thenCombine(
+                cfuture2, ( a, b ) -> combinator( (StackOverflowAnswers) a, (StackOverflowAnswers) b ));
+
+        try{
+             return new Answers((List<Item>) welcomeOrNot.get());
+        } catch (InterruptedException e) {
+            logger.error(e.getLocalizedMessage());
+            throw new Game1ServiceException(e);
+        } catch (ExecutionException e) {
+            logger.error(e.getLocalizedMessage());
+            throw new Game1ServiceException(e);
+        }
+    }
+
+    List<Item> combinator( StackOverflowAnswers answers1, StackOverflowAnswers answers2 ) {
+        final List<Item> answerList = new ArrayList<>();
+        answerList.addAll(answers1.getItems());
+        answerList.addAll(answers2.getItems());
+        return answerList;
+    }
+
+    @Override
+    public Answers getQuestionsCompletableFuturesTimeout() throws Game1ServiceException {
+        final CompletableFuture cfuture1 = CompletableFuture.supplyAsync( ( ) -> {
+            return this.getJavaAnswers();
+        });
+        final CompletableFuture cfuture2 = CompletableFuture.supplyAsync( ( ) -> {
+            return getJavaScriptAnswersTimeout();
+        });
+        final CompletableFuture welcomeOrNot = cfuture1.thenCombine(
+                cfuture2, ( a, b ) -> combinator( (StackOverflowAnswers) a, (StackOverflowAnswers) b ));
+
+        try{
+            return new Answers((List<Item>) welcomeOrNot.get());
+        } catch (InterruptedException e) {
+            logger.error(e.getLocalizedMessage());
+            throw new Game1ServiceException(e);
+        } catch (ExecutionException e) {
+            logger.error(e.getLocalizedMessage());
             throw new Game1ServiceException(e);
         }
     }
