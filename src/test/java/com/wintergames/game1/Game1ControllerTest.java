@@ -11,6 +11,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
 
@@ -21,7 +22,7 @@ public class Game1ControllerTest {
 
     private static final Logger logger = LoggerFactory.getLogger(Game1ControllerTest.class);
 
-    final static String METHOD1 = "/v1/resource/method1/";
+    final static String METHOD1 = "/v1/resource1/method1/";
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -36,34 +37,34 @@ public class Game1ControllerTest {
 
     @Test
     public void getAnswerSequenceSuccessTest() throws Exception{
-        Answers answer = this.restTemplate.getForObject("/v1/resource/sequence/", Answers.class);
+        Answers answer = this.restTemplate.getForObject("/v1/resource1/sequence/", Answers.class);
         assertThat(answer.getItems().size(), is(60));
     }
 
     @Test
     public void getAnswerParallelFuturesSuccessTest() throws Exception{
-        Answers answer = this.restTemplate.getForObject("/v1/resource/parallel/futures", Answers.class);
+        Answers answer = this.restTemplate.getForObject("/v1/resource1/parallel/futures", Answers.class);
         assertThat(answer.getItems().size(), is(60));
     }
 
     @Test
     public void getAnswerParallelFuturesTimeoutTest() throws Exception{
-        String response = this.restTemplate.getForObject("/v1/resource/parallel/futures/timeout", String.class);
+        String response = this.restTemplate.getForObject("/v1/resource1/parallel/futures/timeout", String.class);
         logger.info(response);
-        assertThat(response, is(nullValue()));
+        assertThat(response, is(notNullValue()));
     }
 
     @Test
     public void getAnswerRuntimeErrorTest() throws Exception{
-        String response = this.restTemplate.postForObject("/v1/resource/runtime/err",null, String.class);
+        String response = this.restTemplate.postForObject("/v1/resource1/runtime/err",null, String.class);
         logger.info(response);
-        assertThat(response, is(nullValue()));
+        assertThat(response, is(notNullValue()));
     }
 
     @Test
     public void getAnswerUnknownResourceTest() throws Exception{
-        String response = this.restTemplate.getForObject("/v1/resource/unknown", String.class);
+        String response = this.restTemplate.getForObject("/v1/resource1/unknown", String.class);
         logger.info(response);
-        assertThat(response, is(nullValue()));
+        assertThat(response, is(notNullValue()));
     }
 }
